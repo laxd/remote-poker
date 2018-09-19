@@ -8,12 +8,13 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
     console.log('New WS connection established');
+
+    socket.on('userJoin', function(username) {
+        console.log(username + " joined");
+        socket.emit('userJoin', username);
+    });
 });
 
-setInterval(function() {
-    console.log("Emited vote");
-    io.emit('vote', "User voted " + Math.random());
-}, 1000);
 
 http.listen(8000, function() {
     console.log('Listening on *:8000');

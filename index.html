@@ -15,12 +15,21 @@
 
                     $('#votes').append(div);
                 });
+
+                $("#join").click(function() {
+                    var name = $("#name").text;
+                    socket.emit("userJoin", name);
+                });
             });
+
         </script>
     </head>
     <body>
         Scrum Poker!
         <div id="users"/>
         <div id="votes"/>
+
+        <input id="name"/>
+        <button id="join"/>
     </body>
 </html>
